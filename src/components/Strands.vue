@@ -86,9 +86,15 @@ export default {
 		}
 	},
 	created() {
-		// TODO - make dynamic
-		let todays_data = require('./../assets/data/strands/63.json')
-
+		// ~~TODO - make dynamic~~
+	   	//Get list of files
+	    	const strands = require.context(
+	      		"../assets/data/strands",
+	      		true,
+	     		/^.*\.json$/
+		);
+		//Select random day on page refresh
+	    	let todays_data = require("./../assets/data/strands/" +(Math.random() * (strands.keys().length - 1) + 1).toFixed().toString() +".json");
 		this.board = todays_data.startingBoard
 		this.clue = todays_data.clue
 		this.spangram = todays_data.spangram
